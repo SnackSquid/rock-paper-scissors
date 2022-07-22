@@ -1,5 +1,5 @@
-let playerInput = "ROCK";
-
+let playerInput;
+let goodValues = ["rock", "paper", "scissors"];
 
 function getComputerChoice() {
     let random;
@@ -23,7 +23,6 @@ function getComputerChoice() {
     }
 
 }
-
 
 function rockPaperScissors(playerSelection, computerSelection) {
 
@@ -71,9 +70,33 @@ function rockPaperScissors(playerSelection, computerSelection) {
 }
 
 function game() {
+
     let gameRound, winner;
     let score = 0;
-    for (let i = 1; i <= 1; i++) {
+
+    // game loops executes 5 times and declares a winner
+    for (let i = 1; i <= 5; i++) {
+
+        // create a while loop to make sure we're getting the correct input from the player
+        let goodInput = false;
+
+        while (goodInput == false) {
+    
+            playerInput = prompt("Enter rock, paper, or scissors");
+            playerInput.toLowerCase();
+            
+            if (playerInput == "rock") {
+                goodInput = true;
+            }
+        
+            else if (playerInput == "paper") {
+                goodInput = true;
+            }
+            if (playerInput == "scissors") {
+                goodInput = true;
+            }
+        
+        }
 
         let computerInput;
         computerInput = getComputerChoice();
