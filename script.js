@@ -24,6 +24,10 @@ function getComputerChoice() {
 
 }
 
+function getInput() {
+    div = document.querySelector('input')
+}
+
 function rockPaperScissors(playerSelection, computerSelection) {
 
     let outcome;
@@ -112,15 +116,11 @@ function game() {
 
     }
     
-    if (score == 0) {
-        winner = "You're both losers!";
-        console.log(winner);
-    }
-    else if (score > 0) {
+    if (score == 5) {
         winner = "You're a winner baby!";
         console.log(winner);
     }
-    if (score < 0) {
+    else if (score == -5) {
         winner = "You lose chump!";
         console.log(winner);
     }
