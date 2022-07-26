@@ -24,91 +24,95 @@ function getComputerChoice() {
 
 }
 
-function rockPaperScissors(playerSelection, computerSelection) {
+// use a click event to return the #id of the object
+function getID(click) {
+    let id;
+    console.log(this.id);
+    click.stopPropagation();
+    id = this.id;
+    return id;
+}
 
-    let outcome;
-    playerSelection = playerSelection.toLowerCase();
+function playerChoice() {
 
+    let currentChoice = "";
+
+    // select all div elements
+    const divs = document.querySelectorAll('div');
+
+    // assign the players choice to the current clicked on div by using the
+    // getID function, setting capture to false so it doesn't select bubbled divs
+    currentChoice = divs.forEach(div => div.addEventListener('click', getID, {
+        capture: false
+    })); 
+    
+    console.log(currentChoice);
+    return currentChoice;
+
+}
+
+ 
+function playRound(playerSelection, computerSelection) {
+
+    let points;
+
+    // if player and computer make same selection
     if (playerSelection === computerSelection) {
-        outcome = `You both chose ${playerSelection}, no winner!`;
-        return outcome;
+        points = 0;
+        return points;
     }
 
     // player winning logic
     else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        outcome = 'You win! Rock beats scissors.';
-        return outcome;
+        points = 1;
+        return points;
     }
     else if (playerSelection == 'paper' && computerSelection == 'rock') {
-        outcome = 'You win! Paper beats rock.';
-        return outcome;
+        points = 1;
+        return points;
     }
     else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-        outcome = 'You win! Scissors beats paper.';
-        return outcome;
+        points = 1;
+        return points;
     }
 
     // computer winning logic
     else if (computerSelection == 'rock' && playerSelection == 'scissors') {
-        outcome = 'You lose! Rock beats scissors.';
-        return outcome;
+        points = -1;
+        return points;
     }
     else if (computerSelection == 'paper' && playerSelection == 'rock') {
-        outcome = 'You lose! Paper beats rock.';
-        return outcome;
+        points = -1;
+        return points;
     }
     else if (computerSelection == 'scissors' && playerSelection == 'paper') {
-        outcome = 'You lose! Scissors beats paper.';
-        return outcome;
+        points = -1;
+        return points;
     }
 
     // error handling
     else {
-        outcome = 'error!';
-        return outcome;
+        points = NaN;
+        return points;
     }
 }
 
 function game() {
 
-    let gameRound, winner;
+    let winner;
     let score = 0;
 
-    // game loops executes 5 times and declares a winner
-    for (let i = 1; i <= 5; i++) {
+    // if score = 5, player wins
+    // if score = -5, computer wins
+    while (score < 5 || score > -5) {
 
-        // create a while loop to make sure we're getting the correct input from the player
-        let goodInput = false;
-
-        while (goodInput == false) {
-    
-            playerInput = prompt("Enter rock, paper, or scissors");
-            playerInput.toLowerCase();
-            
-            if (playerInput == "rock") {
-                goodInput = true;
-            }
-        
-            else if (playerInput == "paper") {
-                goodInput = true;
-            }
-            if (playerInput == "scissors") {
-                goodInput = true;
-            }
-        
-        }
-
-        let computerInput;
+        // create variables for inputs
+        let computerInput, playerInput;
+        // get the computer and player inputs
         computerInput = getComputerChoice();
+        playerInput = playerChoice();
 
-        gameRound = rockPaperScissors(playerInput, computerInput);
-
-        if (gameRound.substring(0, 8) == 'You lose') {
-            score -= 1;
-        }
-        else {
-            score += 1;
-        }
+        score = playRound(playerInput, computerInput);
 
     }
     
