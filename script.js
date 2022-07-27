@@ -27,7 +27,6 @@ function getComputerChoice() {
 // use a click event to return the #id of the object
 function getID(click) {
     let id;
-    console.log(this.id);
     click.stopPropagation();
     id = this.id;
     return id;
@@ -35,7 +34,7 @@ function getID(click) {
 
 function playerChoice() {
 
-    let currentChoice = "";
+    let currentChoice;
 
     // select all div elements
     const divs = document.querySelectorAll('div');
@@ -46,7 +45,6 @@ function playerChoice() {
         capture: false
     })); 
     
-    console.log(currentChoice);
     return currentChoice;
 
 }
@@ -90,9 +88,13 @@ function playRound(playerSelection, computerSelection) {
         return points;
     }
 
+    else if (points = undefined) {
+        
+    }
+
     // error handling
     else {
-        points = NaN;
+        points = 'ERROR';
         return points;
     }
 }
@@ -100,19 +102,25 @@ function playRound(playerSelection, computerSelection) {
 function game() {
 
     let winner;
+     // create variables for inputs
+    let computerInput, playerInput;
     let score = 0;
 
     // if score = 5, player wins
     // if score = -5, computer wins
     while (score < 5 || score > -5) {
 
-        // create variables for inputs
-        let computerInput, playerInput;
+       
         // get the computer and player inputs
         computerInput = getComputerChoice();
         playerInput = playerChoice();
 
-        score = playRound(playerInput, computerInput);
+        console.log(computerInput);
+        console.log(playerInput);
+
+        score += playRound(playerInput, computerInput);
+
+        console.log(score);
 
     }
     
@@ -131,4 +139,4 @@ function game() {
 
 }
 
-game()
+game();
