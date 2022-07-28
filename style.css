@@ -22,11 +22,11 @@ body {
     gap: 30px;
 }
 
-.choice {
+/*.choice {
     display: flex;
     width: 200px;
     height: 200px;
     background-color: goldenrod;
     justify-content: center;
     align-items: center;
-}
+} */
