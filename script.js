@@ -1,4 +1,11 @@
-let score = 0;
+let playerScore = 0;
+let computerScore = 0;
+
+// display score on the score block
+const playerScoreDiv = document.querySelector('.playerScoreDiv');
+const computerScoreDiv = document.querySelector('.computerScoreDiv');
+playerScoreDiv.textContent = `You: ${playerScore}`;
+computerScoreDiv.textContent = `Computer: ${computerScore}`;
 // function for determining the computers choice in game
 function getComputerChoice() {
     let random;
@@ -20,42 +27,46 @@ function getComputerChoice() {
 }
 // function to determine who won the round
 function playRound(playerSelection, computerSelection) {
-    let points;
     // if player and computer make same selection
     if (playerSelection === computerSelection) {
-        points = 0;
-        return points;
+       
     }
     // player winning logic
     else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        points = 1;
-        return points;
+        playerScore += 1;
     }
     else if (playerSelection == 'paper' && computerSelection == 'rock') {
-        points = 1;
-        return points;
+        playerScore += 1;
     }
     else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-        points = 1;
-        return points;
+        playerScore += 1;
     }
     // computer winning logic
     else if (computerSelection == 'rock' && playerSelection == 'scissors') {
-        points = -1;
-        return points;
+        computerScore += 1;
     }
     else if (computerSelection == 'paper' && playerSelection == 'rock') {
-        points = -1;
-        return points;
+        computerScore += 1;
     }
     else if (computerSelection == 'scissors' && playerSelection == 'paper') {
-        points = -1;
-        return points;
+        computerScore += 1;
     }
     // error handling
     else {
         points = 'ERROR';
         return points;
+    }
+}
+
+function checkWinner(playerScore, computerScore) {
+
+    if (computerScore == 5) {
+        setTimeout(() => {alert("You lose chump!")}, 100);
+        score = 0;
+    }
+    else if (playerScore == 5) {
+        setTimeout(() => {alert("Congratulations, you beat the machine!")}, 100);
+        score = 0;
     }
 }
 
@@ -68,21 +79,11 @@ function game(e) {
     playerInput = this.id;
     computerInput = getComputerChoice();
     roundScore = playRound(playerInput, computerInput);
+
     score += roundScore;
-    // display score on the score block
-    const scoreDisplay = document.querySelector('.scoreDisplay');
     scoreDisplay.textContent = score;
     // winning conditions
-    if (score == -5) {
 
-        setTimeout(() => {alert("You lose chump!")}, 100);
-        score = 0;
-    }
-    else if (score == 5) {
-
-        setTimeout(() => {alert("Congratulations, you beat the machine!")}, 100);
-        score = 0;
-    }
     
 }
 
