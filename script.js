@@ -29,7 +29,8 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     // if player and computer make same selection
     if (playerSelection === computerSelection) {
-       
+       playerScore += 0;
+       computerScore += 0;
     }
     // player winning logic
     else if (playerSelection == 'rock' && computerSelection == 'scissors') {
@@ -56,33 +57,44 @@ function playRound(playerSelection, computerSelection) {
         points = 'ERROR';
         return points;
     }
+
+    playerScoreDiv.textContent = `You: ${playerScore}`;
+    computerScoreDiv.textContent = `Computer: ${computerScore}`;
 }
 
-function checkWinner(playerScore, computerScore) {
+function checkWinner(pScore, cScore) {
 
-    if (computerScore == 5) {
-        setTimeout(() => {alert("You lose chump!")}, 100);
-        score = 0;
+    if (cScore == 5) {
+        alert("You lose chump!");
+        computerScore = 0;
+        playerScore = 0;
+        playerScoreDiv.textContent = `You: ${playerScore}`;
+        computerScoreDiv.textContent = `Computer: ${computerScore}`;
+        
     }
-    else if (playerScore == 5) {
-        setTimeout(() => {alert("Congratulations, you beat the machine!")}, 100);
-        score = 0;
+    else if (pScore == 5) {
+        alert("Congratulations, you beat the machine!");
+        computerScore = 0;
+        playerScore = 0;
+        playerScoreDiv.textContent = `You: ${playerScore}`;
+        computerScoreDiv.textContent = `Computer: ${computerScore}`;
+        
     }
 }
 
 // game loop
 function game(e) {
     let computerInput, playerInput;
-    let roundScore;
     e.stopPropagation();
     // generate inputs and play a round, then update the score
     playerInput = this.id;
     computerInput = getComputerChoice();
-    roundScore = playRound(playerInput, computerInput);
 
-    score += roundScore;
-    scoreDisplay.textContent = score;
+    playRound(playerInput, computerInput);
     // winning conditions
+    checkWinner(playerScore, computerScore);
+    
+    
 
     
 }
