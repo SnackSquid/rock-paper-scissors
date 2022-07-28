@@ -1,4 +1,4 @@
-let score;
+let score = 0;
 // function for determining the computers choice in game
 function getComputerChoice() {
     let random;
@@ -62,11 +62,16 @@ function playRound(playerSelection, computerSelection) {
 // use a click event to return the #id of the object
 function game(e) {
     let computerInput, playerInput;
+    let roundScore;
     e.stopPropagation();
+
     playerInput = this.id;
     computerInput = getComputerChoice();
-    console.log(playerInput);
-    console.log(computerInput);
+
+    roundScore = playRound(playerInput, computerInput);
+    score += roundScore;
+    
+    console.log(score);
 }
 
 // select all div elements
