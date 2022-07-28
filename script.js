@@ -59,24 +59,34 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// use a click event to return the #id of the object
+// game loop
 function game(e) {
     let computerInput, playerInput;
     let roundScore;
     e.stopPropagation();
-
+    // generate inputs and play a round, then update the score
     playerInput = this.id;
     computerInput = getComputerChoice();
-
     roundScore = playRound(playerInput, computerInput);
     score += roundScore;
+    // display score on the score block
+    const scoreDisplay = document.querySelector('.scoreDisplay');
+    scoreDisplay.textContent = score;
+    // winning conditions
+    if (score == -5) {
+
+        setTimeout(() => {alert("You lose chump!")}, 100);
+        score = 0;
+    }
+    else if (score == 5) {
+
+        setTimeout(() => {alert("Congratulations, you beat the machine!")}, 100);
+        score = 0;
+    }
     
-    console.log(score);
 }
 
-// select all div elements
+// select all the buttons and add an even listener that plays the game
 const buttonType = document.querySelectorAll('button');
-
 const buttons = Array.from(buttonType);
-
 buttons.forEach(button => button.addEventListener('click', game, {capture: false}));

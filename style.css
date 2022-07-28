@@ -13,23 +13,26 @@ body {
     flex-direction: column;
   }
 
-.score-container {
+.scoreContainer {
   display:flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 100px;
 }
 
-.score {
+.scoreDisplay {
   display:flex;
   justify-content: center;
   align-items: center;
   width: 300px;
   height: 150px;
   background-color: darkolivegreen;
+  font-size: 36px;
+  color: white;
+  font-weight: bolder;
 }
 
-.choice-container {
+.choiceContainer {
     display:flex;
     justify-content: center;
     align-items: center;
