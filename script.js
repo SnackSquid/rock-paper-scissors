@@ -6,6 +6,11 @@ const playerScoreDiv = document.querySelector('.playerScoreDiv');
 const computerScoreDiv = document.querySelector('.computerScoreDiv');
 playerScoreDiv.textContent = `You: ${playerScore}`;
 computerScoreDiv.textContent = `Computer: ${computerScore}`;
+
+// create variables for the player and computer image
+const playerImage = document.querySelector('#playerImage');
+const computerImage = document.querySelector('#computerImage');
+
 // function for determining the computers choice in game
 function getComputerChoice() {
     let random;
@@ -58,27 +63,34 @@ function playRound(playerSelection, computerSelection) {
         return points;
     }
 
+    // display scores and set images to choices
     playerScoreDiv.textContent = `You: ${playerScore}`;
     computerScoreDiv.textContent = `Computer: ${computerScore}`;
+    playerImage.src = `./images/${playerSelection}.png`;
+    computerImage.src = `./images/${computerSelection}.png`;
 }
 
 function checkWinner(pScore, cScore) {
 
     if (cScore == 5) {
         alert("You lose chump!");
+        // reset  game to default state
         computerScore = 0;
         playerScore = 0;
         playerScoreDiv.textContent = `You: ${playerScore}`;
         computerScoreDiv.textContent = `Computer: ${computerScore}`;
-        
+        playerImage.src = "./images/player.png";
+        computerImage.src = "./images/robot.png";   
     }
     else if (pScore == 5) {
         alert("Congratulations, you beat the machine!");
+        // reset the game to default state
         computerScore = 0;
         playerScore = 0;
         playerScoreDiv.textContent = `You: ${playerScore}`;
         computerScoreDiv.textContent = `Computer: ${computerScore}`;
-        
+        playerImage.src = "./images/player.png";
+        computerImage.src = "./images/robot.png";
     }
 }
 
@@ -92,11 +104,7 @@ function game(e) {
 
     playRound(playerInput, computerInput);
     // winning conditions
-    checkWinner(playerScore, computerScore);
-    
-    
-
-    
+    checkWinner(playerScore, computerScore);  
 }
 
 // select all the buttons and add an even listener that plays the game
