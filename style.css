@@ -14,15 +14,31 @@ body {
 img {
   width: 100px;
   height: auto;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .header {
   display: flex;
   justify-content: center;
-  background-color: #BF4E30;
-  padding: 15px;
+  background-color: #d1312d;
+  padding: 10px;
   margin-bottom: 90px;
   font-size: 28px;
   color: white;
@@ -107,14 +123,24 @@ img {
   font-weight: bolder;
   flex-direction: column;
   text-align: center;
-} 
+}
+
+.choice:hover {
+  background-color: #80808030;
+}
 
 .footer {
   display: flex;
-  padding: 30px;
+  padding: 10px;
   font-size: 28px;
   color: white;
   font-weight: bolder;
   gap: 3em;
   background-color: #282828;
+  justify-content: space-between;
+}
+
+#creditText {
+  font-size: 10px;
+  font-weight: 300;
 }
