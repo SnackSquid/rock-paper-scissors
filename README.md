@@ -1,5 +1,7 @@
 # rock-paper-scissors
 
+Play the game here: https://snacksquid.github.io/rock-paper-scissors/
+
 # credit
 
 Thank you to all of the wonderful artists who provided their artwork to open emoji. Listed are the used assets and their authors.
